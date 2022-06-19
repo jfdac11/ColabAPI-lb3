@@ -1,0 +1,71 @@
+{
+  "name": "colaborador",
+  "plural": "s",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "dataCadastro": {
+      "type": "date",
+      "required": true
+    },
+    "dataNascimento": {
+      "type": "date",
+      "required": true
+    },
+    "medida": {
+      "type": {
+        "peso": {
+          "type": "number"
+        },
+        "altura": {
+          "type": "number"
+        },
+        "dataHora": {
+          "type": "date"
+        },
+        "imc": {
+          "type": {
+            "valor": {
+              "type": "number"
+            },
+            "classificacao": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "historicoMedidas": {
+      "type": [
+        {
+          "peso": {
+            "type": "number"
+          },
+          "altura": {
+            "type": "number"
+          },
+          "dataHora": {
+            "type": "date"
+          },
+          "imc": {
+            "type": {
+              "valor": {
+                "type": "number"
+              },
+              "classificacao": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
