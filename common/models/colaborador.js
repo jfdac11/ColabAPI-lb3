@@ -6,7 +6,8 @@ module.exports = function(Colaborador) {
         var dataAux2 = new Date(data);
         dataAux2.setDate(dataAux.getDate() + 1);
     
-        return Colaborador.aggregate({
+        const collection = Colaborador.getConnector().collection('Colaborador');
+        const cursor = collection.aggregate({
           where: { _id: id },
           aggregate: [
             {
@@ -46,12 +47,8 @@ module.exports = function(Colaborador) {
             }
           ],
         })
-          .then(function (medidas) {
-            return Promise.resolve(medidas);
-          })
-          .catch(function (err) {
-            console.log(err);
-          });
+
+        return cursor.toArray();
       };
     
     Colaborador.remoteMethod("getMedidasData", {
@@ -190,7 +187,8 @@ module.exports = function(Colaborador) {
     });
 
     Colaborador.getResumoImc = async function () {
-        return Colaborador.aggregate({
+        const collection = Colaborador.getConnector().collection('Colaborador');
+        const cursor = collection.aggregate({
             aggregate: [
             { $sortByCount: "$medida.imc.classificacao" },
             {
@@ -201,13 +199,9 @@ module.exports = function(Colaborador) {
                 },
             },
             ],
-        })
-            .then(function (medidas) {
-            return Promise.resolve(medidas);
-            })
-            .catch(function (err) {
-            console.log(err);
-            });
+        });
+
+            return cursor.toArray();
     };
 
     Colaborador.remoteMethod("getResumoImc", {
@@ -223,7 +217,8 @@ module.exports = function(Colaborador) {
     });
 
     Colaborador.getNumCadastros = async function () {
-        return Colaborador.aggregate({
+        const collection = Colaborador.getConnector().collection('Colaborador');
+        const cursor = collection.aggregate({
             aggregate: [
             {
                 $project: {
@@ -319,12 +314,7 @@ module.exports = function(Colaborador) {
             },
             ],
         })
-            .then(function (medidas) {
-            return Promise.resolve(medidas);
-            })
-            .catch(function (err) {
-            console.log(err);
-            });
+            return cursor.toArray();
     };
 
     Colaborador.remoteMethod("getNumCadastros", {
