@@ -1,7 +1,6 @@
 {
   "name": "Colaborador",
-  "plural": "s",
-  "base": "Model",
+  "base": "User",
   "idInjection": true,
   "options": {
     "validateUpsert": true
