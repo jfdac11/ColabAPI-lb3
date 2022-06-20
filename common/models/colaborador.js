@@ -323,7 +323,7 @@ module.exports = function(Colaborador) {
                     $lookup: {
                         from: "Avaliacao",
                         localField: "_id",
-                        foreignField: "ColaboradorId",
+                        foreignField: "colaborador",
                         as: "avaliacoes",
                     },
                 },
